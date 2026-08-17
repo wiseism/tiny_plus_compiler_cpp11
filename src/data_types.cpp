@@ -43,7 +43,7 @@ std::string Token::kind_names_[] = {
         "TK_LSS",
         "TK_EQU",};
 
-std::string Token::kind_name() {
+std::string Token::kind_name() const {
 
     return kind_names_[static_cast<int>(kind)];
 }
@@ -206,7 +206,7 @@ Token Tokens::back() {
 }
 
 
-std::string ErrorMsg::to_string() {
+std::string ErrorMsg::to_string() const {
     return "在第" + std::to_string(line) + "行, 第" + std::to_string(column) + "列出错: " + msg;
 }
 
@@ -250,7 +250,7 @@ std::vector<std::string> TreeNode::type_mapped_names = {
         "FACTOR"
 };
 
-std::string TreeNode::get_type_name() {
+std::string TreeNode::get_type_name() const {
     return type_mapped_names[type_];
 }
 

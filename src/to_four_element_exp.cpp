@@ -242,7 +242,7 @@ void ToFourElementExp::read_node_handle(TreeNode *root) {
 }
 
 void ToFourElementExp::write_node_handle(TreeNode *root) {
-    res_.push_back("write " + root->child_[0]->tk_.value);
+    res_.push_back("write " + log_or_handle(root->child_[0]));
 }
 
 void ToFourElementExp::repeat_node_handle(TreeNode *root, std::string end_label) {

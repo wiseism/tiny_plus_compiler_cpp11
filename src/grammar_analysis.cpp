@@ -35,7 +35,6 @@ TreeNode *GrammarAnalysis::program(ErrorMsgs &error_msgs) {
         declaration();
         return stmt_sequence();
     } catch (ErrorMsg &msg) {
-        std::cout << msg.to_string() << std::endl;
         error_msgs.emplace_back(msg);
         return nullptr;
     }

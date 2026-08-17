@@ -58,6 +58,14 @@ cmake -S . -B build -DBUILD_DOC=OFF
 cmake --build build --parallel
 ```
 
+运行编译器并查看 token、语法树和三地址中间代码：
+
+```bash
+./build/bin/tiny_compiler_cpp11_run sample/experiment2_test2_in.txt
+```
+
+将 `source-file` 替换为 `-` 可从标准输入读取源代码。词法、语法或语义错误会显示位置和原因，并以非零状态退出。
+
 如果 GitHub 访问需要代理，请先确认代理程序正在监听 `127.0.0.1:10800`，再导出代理环境变量。也可以先自行下载 GoogleTest，并在离线配置时指定其源码目录：
 
 ```bash

@@ -64,7 +64,7 @@ public:
 
     Token();
 
-    std::string kind_name();
+    std::string kind_name() const;
 
     static std::string kind_name(Kind kind);
 
@@ -112,7 +112,7 @@ struct ErrorMsg {
 
     void print();
 
-    std::string to_string();
+    std::string to_string() const;
 };
 
 using ErrorMsgs = std::vector<ErrorMsg>;
@@ -189,7 +189,7 @@ public:
 
     TreeNode(Type type, Token token);
 
-    std::string get_type_name();
+    std::string get_type_name() const;
 
     static std::string type_name(Type type);
 };
