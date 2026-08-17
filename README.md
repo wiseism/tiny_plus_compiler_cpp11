@@ -48,6 +48,23 @@
 │
 └─third_lib : 第三方库`googletest`
 ```
+
+## 构建
+
+GoogleTest 会在首次配置时下载到构建目录（`build/_deps`），不会修改源码目录。
+
+```bash
+cmake -S . -B build -DBUILD_DOC=OFF
+cmake --build build --parallel
+```
+
+如果 GitHub 访问需要代理，请先确认代理程序正在监听 `127.0.0.1:10800`，再导出代理环境变量。也可以先自行下载 GoogleTest，并在离线配置时指定其源码目录：
+
+```bash
+cmake -S . -B build -DBUILD_DOC=OFF \
+  -DGOOGLETEST_SOURCE_DIR=/absolute/path/to/googletest
+```
+
 ## 一) 词法分析
 * 问题:
     * `{abc er` 缺少右闭合怎么处理? 直接默认一整行错误,并跳过该行分析
