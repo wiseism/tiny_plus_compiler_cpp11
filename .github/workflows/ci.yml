@@ -19,3 +19,17 @@ jobs:
 
       - name: Build
         run: cmake --build build --config Release --parallel
+
+      - name: Run GoogleTest suite
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Compile official sample programs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for source in sample/experiment2_test1_in.txt sample/experiment2_test2_in.txt; do
+            echo "Compiling ${source}"
+            ./build/bin/tiny_compiler_cpp11_run "${source}" | tee "${source##*/}.log"
+            grep -q '^Tokens:' "${source##*/}.log"
+            grep -q '^Three-address code:' "${source##*/}.log"
+          done
