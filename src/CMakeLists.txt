@@ -4,7 +4,7 @@ set(MAIN_FILE main.cpp)
 # 将当前目录下所有.cpp/.h文件包含进来. 注意,file()必须在每次增加/删除文件时reload project
 file(GLOB_RECURSE source_files "*.cpp" "*.h")
 # 去除入口文件
-list(REMOVE_ITEM source_files MAIN_FILE)
+list(REMOVE_ITEM source_files "${CMAKE_CURRENT_SOURCE_DIR}/${MAIN_FILE}")
 
 # 打包成库
 add_library(${CMAKE_PROJECT_NAME}_lib ${source_files})

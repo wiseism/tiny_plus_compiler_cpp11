@@ -22,7 +22,8 @@ else ()
     FetchContent_Declare(
             googletest
             GIT_REPOSITORY https://gitee.com/mirrors/googletest.git
-            GIT_TAG v1.12.1
+            # Gitee 镜像没有 v1.12.1 这个 tag，其对应版本名为 release-1.12.1（同一 commit 58d77fa）
+            GIT_TAG release-1.12.1
             GIT_SHALLOW TRUE
     )
     FetchContent_MakeAvailable(googletest)
