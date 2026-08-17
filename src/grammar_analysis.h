@@ -12,9 +12,16 @@
 class GrammarAnalysis {
 private:
     Tokens tokens_;
-    std::vector<Token>::iterator token_it_;
+    std::size_t position_ = 0;
     SymTable sym_table_;
     using KindSet = std::set<Token::Kind>;
+
+    bool at_end() const;
+    Token &current();
+    const Token &current() const;
+    Token take(KindSet kind_set, const std::string &error_message);
+    bool is_statement_start() const;
+    void require_bool(TreeNode *node, const std::string &context);
 
 public:
     explicit GrammarAnalysis(Tokens token);

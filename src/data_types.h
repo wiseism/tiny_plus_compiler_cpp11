@@ -97,9 +97,11 @@ public:
 
     unsigned long size() const;
 
-    Token &operator[](int index);
+    void resize(std::size_t size);
 
-    Token operator[](int index) const;
+    Token &operator[](std::size_t index);
+
+    const Token &operator[](std::size_t index) const;
 
 };
 

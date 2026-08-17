@@ -14,3 +14,6 @@ add_executable(Unit_Tests_run ${test_files} common.cpp)
 target_link_libraries(Unit_Tests_run gtest gtest_main)
 # 链接自己项目的库(库在src/CMakeLists.txt中生成)
 target_link_libraries(Unit_Tests_run ${CMAKE_PROJECT_NAME}_lib)
+
+add_test(NAME Unit_Tests COMMAND Unit_Tests_run)
+set_tests_properties(Unit_Tests PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/tests/runtime)

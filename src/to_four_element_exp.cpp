@@ -9,6 +9,9 @@ std::vector<std::string> ToFourElementExp::convert(TreeNode *root) {
     if (!root)
         return {};
 
+    label_num = 0;
+    var_num = 1;
+    res_.clear();
     stmt_seq_node_handle(root);
     return res_;
 }
@@ -70,6 +73,11 @@ void ToFourElementExp::if_node_handle(TreeNode *root, std::string end_label) {
 std::string ToFourElementExp::log_or_handle(TreeNode *root) {
 
     switch (root->type_) {
+        case TreeNode::Type::LOG_NOT_EXP: {
+            std::string result = get_var_name();
+            res_.push_back(result + ":=not " + log_or_handle(root->child_[0]));
+            return result;
+        }
         case TreeNode::Type::LOG_OR_EXP: {
             std::string log_and_res = log_and_handle(root->child_[0]);
             std::string another_log_or_res = log_or_handle(root->child_[1]);
@@ -197,6 +205,9 @@ std::string ToFourElementExp::factor_handle(TreeNode *root) {
 void ToFourElementExp::cond_exp_handle(TreeNode *root, std::string true_label, std::string false_label) {
 
     switch (root->type_) {
+        case TreeNode::Type::LOG_NOT_EXP:
+            cond_exp_handle(root->child_[0], false_label, true_label);
+            break;
         case TreeNode::Type::LOG_OR_EXP: {
             std::string before_second_log_or_label = get_new_label();
             cond_exp_handle(root->child_[0], true_label, before_second_log_or_label);

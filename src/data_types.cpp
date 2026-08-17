@@ -188,11 +188,15 @@ unsigned long Tokens::size() const {
     return tokens_.size();
 }
 
-Token &Tokens::operator[](int index) {
+void Tokens::resize(std::size_t size) {
+    tokens_.resize(size);
+}
+
+Token &Tokens::operator[](std::size_t index) {
     return tokens_[index];
 }
 
-Token Tokens::operator[](int index) const {
+const Token &Tokens::operator[](std::size_t index) const {
     return tokens_[index];
 }
 
